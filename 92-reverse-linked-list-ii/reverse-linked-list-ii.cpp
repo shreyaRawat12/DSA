@@ -18,15 +18,11 @@ public:
         dummy.next = head;
 
         ListNode* prev = &dummy;
-
-        // Move prev to node just before left
+        
         for (int i = 1; i < left; i++) {
             prev = prev->next;
         }
-
         ListNode* curr = prev->next;
-
-        // Reverse the required portion
         for (int i = 0; i < right - left; i++) {
             ListNode* next = curr->next;
             curr->next = next->next;
