@@ -1,36 +1,33 @@
 class Solution {
 public:
     int compress(vector<char>& chars) {
+        int index = 0;
+        int i = 0;
 
-        int write = 0;
-        int read = 0;
+        while (i < chars.size()) {
 
-        while (read < chars.size()) {
-
-            char current = chars[read];
+            char ch = chars[i];
             int count = 0;
 
-            // Count consecutive characters
-            while (read < chars.size() &&
-                   chars[read] == current) {
-                read++;
+            // Count consecutive same characters
+            while (i < chars.size() && chars[i] == ch) {
+                i++;
                 count++;
             }
 
-            // Write the character
-            chars[write++] = current;
+            // Write character
+            chars[index++] = ch;
 
-            // Write count if greater than 1
+            // Write count
             if (count > 1) {
+                string s = to_string(count);
 
-                string num = to_string(count);
-
-                for (char c : num) {
-                    chars[write++] = c;
+                for (char c : s) {
+                    chars[index++] = c;
                 }
             }
         }
 
-        return write;
+        return index;
     }
 };
